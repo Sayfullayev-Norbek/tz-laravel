@@ -28,6 +28,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
   # hasan talabiga binon
+    # hsgefhdgsjh
     public function role(){return $this->belongsTo(Role::class);}
     public function applications(){return $this->hasMany(Application::class);}
 }

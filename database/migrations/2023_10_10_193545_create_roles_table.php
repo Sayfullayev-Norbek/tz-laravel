@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    # o'zgarish
     public function up(): void
     {
         Schema::create('roles', function (Blueprint $table) {
