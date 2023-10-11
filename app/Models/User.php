@@ -27,7 +27,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-  # hasn bilan git haqida
+  # hasan talabiga binon
     public function role(){return $this->belongsTo(Role::class);}
     public function applications(){return $this->hasMany(Application::class);}
 }
