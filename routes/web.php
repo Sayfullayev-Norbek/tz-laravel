@@ -3,17 +3,17 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\MainController;
+use GuzzleHttp\Middleware;
+use PHPUnit\Framework\Attributes\Group;
 
-Route::get('/', function () {
-    return redirect('dashboard');
-})->middleware('auth');
+Route::middleware('auth')->group(function(){
+    Route::get('/', [MainController::class, 'main'])->name('main');
 
+    Route::get('/dashboard', [MainController::class, 'dashboard'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::resource('applications', ApplicationController::class);
+    Route::resource('applications', ApplicationController::class);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
