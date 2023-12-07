@@ -2,6 +2,12 @@
 
 # Laravel task
 
+## Proyekt xaqida
+
+- Bu project o'rganish maqsadida tayyorlandi
+
+Baza strukturasi
+![alt text](photo_2023-12-08_00-32-16.jpg)
 
 ### Stepup
 - ```cp .env.example .env```
@@ -18,3 +24,8 @@
 ## .env
 - DB_HOST = mysql
 - MAIL_MAILER = log
+
+## Foydalanuvchilar
+- User: manage@company
+- Password: secret
+
