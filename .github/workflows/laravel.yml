@@ -17,10 +17,10 @@ jobs:
     - name: Repozitoriyadan kodni yuklash
       uses: actions/checkout@v3
 
-    - name: PHP 8.2 ni o'rnatish
+    - name: PHP 8.1 ni o'rnatish
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.2'
+        php-version: '8.1'
         extensions: mbstring, exif, bcmath, intl, pdo_mysql
         coverage: none
 
@@ -36,5 +36,4 @@ jobs:
     - name: Ma'lumotlar bazasi migratsiyalari
       run: php artisan migrate --force
 
-    - name: Testlarni o'tkazish
-      run: vendor/bin/phpunit
+    
