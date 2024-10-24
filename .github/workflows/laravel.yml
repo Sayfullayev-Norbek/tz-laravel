@@ -9,31 +9,36 @@ on:
      ["main"]
 
 jobs:
-  build:
-
+  migrate:
     runs-on: ubuntu-latest
-
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
     steps:
-    - name: Repozitoriyadan kodni yuklash
-      uses: actions/checkout@v3
-
-    - name: PHP 8.1 ni o'rnatish
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'
-        extensions: mbstring, exif, bcmath, intl, pdo_mysql
-        coverage: none
-
-    - name: Composer o'rnatish
-      run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
-
-    - name: Env faylni yaratish
-      run: cp .env.example .env
-
-    - name: Laravel kalitni yaratish
-      run: php artisan key:generate
-
-    - name: Ma'lumotlar bazasi migratsiyalari
-      run: php artisan migrate --force
-
-    
+      - uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, mysql, pdo_mysql
+      - name: Install Dependencies
+        run: composer install
+      - name: Run Migrations
+        run: php artisan migrate --force
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: laravel
+          DB_USERNAME: root
+          DB_PASSWORD: ''
