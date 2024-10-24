@@ -16,7 +16,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: laravel
+          MYSQL_DATABASE: tz_laravel
         ports:
           - 3306:3306
         options: >-
@@ -39,6 +39,6 @@ jobs:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1:8000
           DB_PORT: 3306
-          DB_DATABASE: chatapp
+          DB_DATABASE: tz_laravel
           DB_USERNAME: root
           DB_PASSWORD: ''
